@@ -1,62 +1,63 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   return (
     <header className="bg-white">
       <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8 border-b">
-        <a className="block" href="/">
+        <Link className="block" href="/">
           <Image src={"/logo.svg"} width={150} height={100} alt="logo image" />
-        </a>
+        </Link>
 
         <div className="flex flex-1 items-center justify-end md:justify-between">
           <nav aria-label="Global" className="hidden md:block">
             <ul className="flex items-center gap-6 text-sm">
               <li>
-                <a
+                <Link
                   className="text-gray-600 transition hover:text-gray-500/75"
                   href="/"
                 >
                   Home
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
+                <Link
                   className="text-gray-600 transition hover:text-gray-500/75"
                   href="/"
                 >
                   Upload
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
+                <Link
                   className="text-gray-600 transition hover:text-gray-500/75"
                   href="/"
                 >
                   About Us
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a
+                <Link
                   className="text-gray-600 transition hover:text-gray-500/75"
                   href="/"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
 
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
-              <a
+              <Link
                 className="block rounded-md bg-primary hover:bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition"
-                href="/"
+                href="/files"
               >
                 Get Started
-              </a>
+              </Link>
             </div>
 
             <button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
