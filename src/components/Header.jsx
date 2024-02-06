@@ -13,7 +13,7 @@ const Header = () => {
             <ul className="flex items-center gap-6 text-sm">
               <li>
                 <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
+                  className="text-gray-600 transition hover:text-gray-500/75"
                   href="/"
                 >
                   Home
@@ -22,7 +22,7 @@ const Header = () => {
 
               <li>
                 <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
+                  className="text-gray-600 transition hover:text-gray-500/75"
                   href="/"
                 >
                   Upload
@@ -31,7 +31,7 @@ const Header = () => {
 
               <li>
                 <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
+                  className="text-gray-600 transition hover:text-gray-500/75"
                   href="/"
                 >
                   About Us
@@ -40,7 +40,7 @@ const Header = () => {
 
               <li>
                 <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
+                  className="text-gray-600 transition hover:text-gray-500/75"
                   href="/"
                 >
                   Contact Us
