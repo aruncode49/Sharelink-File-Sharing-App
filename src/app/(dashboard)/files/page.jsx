@@ -1,12 +1,5 @@
-import SignOutButton from "@/components/SignOutButton";
-
 const FilePage = () => {
-  return (
-    <div>
-      FilePage
-      <SignOutButton />
-    </div>
-  );
+  return <div className="md:ml-64">FilePage</div>;
 };
 
 export default FilePage;
