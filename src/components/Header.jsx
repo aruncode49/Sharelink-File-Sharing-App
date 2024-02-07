@@ -6,7 +6,9 @@ const Header = () => {
     <header className="bg-white">
       <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8 border-b">
         <Link className="block" href="/">
-          <Image src={"/logo.svg"} width={150} height={100} alt="logo image" />
+          <div className="relative w-36 h-10">
+            <Image src={"/logo.svg"} fill alt="logo image" />
+          </div>
         </Link>
 
         <div className="flex flex-1 items-center justify-end md:justify-between">
