@@ -15,7 +15,7 @@ const Header = ({ setIsSideBarOpen }) => {
         {isSignedIn && (
           <div
             onClick={() => setIsSideBarOpen((prev) => !prev)}
-            className="md:hidden cursor-pointer"
+            className="md:hidden cursor-pointer p-1 pl-0"
           >
             <AlignJustify />
           </div>
