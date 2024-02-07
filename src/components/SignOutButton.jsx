@@ -10,7 +10,7 @@ const SignOutButton = () => {
 
   return (
     <button
-      className="flex items-center gap-1 text-white bg-red-600 hover:bg-red-700 p-2 rounded-full"
+      className="flex items-center gap-1 text-white bg-primary hover:bg-red-700 p-2 rounded-full"
       onClick={() => signOut(() => router.push("/"))}
     >
       <LogOut size={18} />

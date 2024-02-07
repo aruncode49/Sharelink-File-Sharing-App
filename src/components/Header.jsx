@@ -8,7 +8,6 @@ import SignOutButton from "./SignOutButton";
 
 const Header = ({ setIsSideBarOpen }) => {
   const { isSignedIn } = useAuth();
-  console.log(isSignedIn);
 
   return (
     <header className="bg-white w-full">
