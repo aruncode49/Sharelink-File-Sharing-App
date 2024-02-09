@@ -68,17 +68,18 @@ const UploadForm = ({ hanldeUploadFile, progress }) => {
       {/* file preview */}
       {file && <FilePreview file={file} closeFile={() => setFile(null)} />}
 
-      {/* upload button */}
-      <button
-        onClick={() => hanldeUploadFile(file)}
-        disabled={!file}
-        className="w-[120px] md:w-[150px] p-2 rounded-full bg-primary hover:bg-blue-700 text-white mt-5 disabled:bg-gray-400 disabled:cursor-not-allowed "
-      >
-        Upload
-      </button>
-
-      {/* progress bar */}
-      {progress > 0 && <ProgressBar progress={progress} />}
+      {/* progress bar and upload button */}
+      {progress > 0 ? (
+        <ProgressBar progress={progress} />
+      ) : (
+        <button
+          onClick={() => hanldeUploadFile(file)}
+          disabled={!file}
+          className="w-[120px] md:w-[150px] p-2 rounded-full bg-primary hover:bg-blue-700 text-white mt-5 disabled:bg-gray-400 disabled:cursor-not-allowed "
+        >
+          Upload
+        </button>
+      )}
     </div>
   );
 };
