@@ -4,7 +4,7 @@ import { useState } from "react";
 import Error from "./Error";
 import FilePreview from "./FilePreview";
 
-const UploadForm = () => {
+const UploadForm = ({ hanldeUploadFile }) => {
   const [file, setFile] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -69,6 +69,7 @@ const UploadForm = () => {
 
       {/* upload button */}
       <button
+        onClick={() => hanldeUploadFile(file)}
         disabled={!file}
         className="w-[120px] md:w-[150px] p-2 rounded-full bg-primary hover:bg-blue-700 text-white mt-5 disabled:bg-gray-400 disabled:cursor-not-allowed "
       >
