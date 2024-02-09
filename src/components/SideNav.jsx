@@ -1,9 +1,9 @@
 "use client";
 
 import { Files, Shield, Upload } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const menuList = [
   {
@@ -27,7 +27,7 @@ const menuList = [
 ];
 
 const SideNav = ({ isSideBarOpen }) => {
-  const [activeIdx, setActiveIdx] = useState();
+  const pathName = usePathname();
 
   return (
     <div
@@ -37,13 +37,12 @@ const SideNav = ({ isSideBarOpen }) => {
     >
       {/* menu list */}
       <div className="flex flex-col w-full">
-        {menuList.map((item, index) => (
+        {menuList.map((item) => (
           <Link
-            href={"#"}
+            href={item.path}
             key={item.id}
             className={`flex gap-2 items-center p-4 px-6 hover:bg-gray-100 text-gray-600 
-            ${activeIdx === index ? "text-primary bg-blue-50" : null} `}
-            onClick={() => setActiveIdx(index)}
+            ${pathName === item.path ? "text-primary bg-blue-50" : null} `}
           >
             <item.icon />
             <h2>{item.name}</h2>

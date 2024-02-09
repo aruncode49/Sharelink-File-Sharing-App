@@ -12,7 +12,7 @@ const layout = ({ children }) => {
       <Header setIsSideBarOpen={setIsSideBarOpen} />
       <div className="flex">
         <SideNav isSideBarOpen={isSideBarOpen} />
-        {children}
+        <div className="md:ml-64 w-full">{children}</div>
       </div>
     </div>
   );
