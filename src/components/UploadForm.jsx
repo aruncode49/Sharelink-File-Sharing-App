@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import Error from "./Error";
+import FilePreview from "./FilePreview";
 
 const UploadForm = () => {
   const [file, setFile] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
 
   const onFileSelect = (file) => {
-    console.log(file);
     if (file && file.size > 2000000) {
       setErrorMsg("Maximum file upload size is 2 MB");
       setFile(null);
@@ -63,6 +63,9 @@ const UploadForm = () => {
 
       {/* Error message */}
       {errorMsg ? <Error msg={errorMsg} /> : null}
+
+      {/* file preview */}
+      {file && <FilePreview file={file} closeFile={() => setFile(null)} />}
 
       {/* upload button */}
       <button
