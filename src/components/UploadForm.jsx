@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Error from "./Error";
 import FilePreview from "./FilePreview";
+import ProgressBar from "./ProgressBar";
 
-const UploadForm = ({ hanldeUploadFile }) => {
+const UploadForm = ({ hanldeUploadFile, progress }) => {
   const [file, setFile] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -75,6 +76,9 @@ const UploadForm = ({ hanldeUploadFile }) => {
       >
         Upload
       </button>
+
+      {/* progress bar */}
+      {progress > 0 && <ProgressBar progress={progress} />}
     </div>
   );
 };
