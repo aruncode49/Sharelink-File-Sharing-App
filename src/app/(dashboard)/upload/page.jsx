@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 
 const UploadPage = () => {
   const [progress, setProgress] = useState(0);
-  const [fileId, setFileId] = useState("");
+  const [fileId, setFileId] = useState();
 
   const { user } = useUser();
   const router = useRouter();
@@ -56,6 +56,7 @@ const UploadPage = () => {
   async function saveFileInfo(file, fileUrl) {
     try {
       const id = generateRandomString().toString();
+      setFileId(id);
       await setDoc(doc(db, "uploadedFile", id), {
         id,
         fileName: file?.name,
@@ -67,7 +68,6 @@ const UploadPage = () => {
         password: "",
         shortUrl: process.env.NEXT_PUBLIC_BASE_URL + id,
       });
-      setFileId(id);
     } catch (error) {
       console.log(error);
       toast.error("Error while saving info in database");
@@ -77,9 +77,9 @@ const UploadPage = () => {
   useEffect(() => {
     progress == 100 &&
       setTimeout(() => {
-        router.push(`/file-preview/${fileId}`);
+        fileId && router.push(`/file-preview/${fileId}`);
       }, 2000);
-  }, [progress == 100]);
+  }, [progress == 100, fileId]);
 
   return (
     <div className="p-4 px-4 md:px-28">
