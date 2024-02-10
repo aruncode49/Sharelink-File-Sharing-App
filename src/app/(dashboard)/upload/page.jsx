@@ -3,12 +3,14 @@
 import UploadForm from "@/components/UploadForm";
 import React, { useState } from "react";
 import { app } from "@/firebase";
+import toast from "react-hot-toast";
 import {
   getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
+import { toastForFileUpload } from "@/utils/toastForFileUpload";
 
 const UploadPage = () => {
   const storage = getStorage(app);
@@ -28,13 +30,16 @@ const UploadPage = () => {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log("Upload is " + progress + "% done");
         setProgress(progress);
+
         progress == 100 &&
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log("File available at", downloadURL);
+            toast.success("File Uploaded Successfully");
           });
       });
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
     }
   }
 
