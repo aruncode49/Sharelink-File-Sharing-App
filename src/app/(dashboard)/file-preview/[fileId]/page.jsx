@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { db } from "@/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import UploadedFilePreview from "@/components/UploadPageComponents/UploadedFilePreview";
 
 const FilePreview = ({ params }) => {
   const [file, setFile] = useState(null);
@@ -25,7 +26,13 @@ const FilePreview = ({ params }) => {
     console.log(fileId);
   }, []);
 
-  return file ? <div>File Preview</div> : <div>Loading.....</div>;
+  return file ? (
+    <div>
+      <UploadedFilePreview file={file} />
+    </div>
+  ) : (
+    <div>Loading.....</div>
+  );
 };
 
 export default FilePreview;
