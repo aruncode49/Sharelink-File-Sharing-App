@@ -1,10 +1,34 @@
 "use client";
 
 import { CopyIcon } from "lucide-react";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import toast from "react-hot-toast";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "@/firebase";
 
 const FileShareForm = ({ file }) => {
   const [passwordEnable, setPasswordEnable] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const password = useRef();
+
+  async function savePasswordInDatabase() {
+    try {
+      if (password.current.value == "")
+        return toast.error("Please add a password");
+      setLoading(true);
+      const docRef = doc(db, "uploadedFile", file?.id);
+      await updateDoc(docRef, {
+        password: password.current.value,
+      });
+      toast.success("Password Update Successfully");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+      password.current.value = "";
+    }
+  }
 
   return (
     <div className="mt-10 flex flex-col w-full gap-6">
@@ -52,9 +76,13 @@ const FileShareForm = ({ file }) => {
               className=" border border-gray-300 p-3 w-full rounded-md text-lg"
               type="password"
               placeholder="Password"
+              ref={password}
             />
-            <button className="bg-primary hover:bg-blue-700 px-5 text-lg rounded-md text-white">
-              Save
+            <button
+              onClick={savePasswordInDatabase}
+              className="bg-primary hover:bg-blue-700 px-5 text-lg rounded-md text-white"
+            >
+              {loading ? <>Saving...</> : <>Save</>}
             </button>
           </div>
         )}

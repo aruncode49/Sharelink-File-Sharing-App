@@ -1,22 +1,20 @@
 import toast from "react-hot-toast";
 
-export function toastForFileUpload(progress, promise) {
-  if (progress == 0) {
-    toast.promise(
-      promise,
-      {
-        loading: "Uploading file...",
-        success: "File uploaded successfully",
-        error: "Failed to upload file",
+export async function toastForPromise(promise) {
+  toast.promise(
+    promise,
+    {
+      loading: "Password updating..",
+      success: "Password saved successfully",
+      error: "Failed to save password",
+    },
+    {
+      success: {
+        duration: 2000, // Duration of success toast message
       },
-      {
-        success: {
-          duration: 2000, // Duration of success toast message
-        },
-        error: {
-          duration: 2000, // Duration of error toast message
-        },
-      }
-    );
-  }
+      error: {
+        duration: 2000, // Duration of error toast message
+      },
+    }
+  );
 }
