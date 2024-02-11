@@ -33,7 +33,7 @@ const SideNav = ({ isSideBarOpen }) => {
     <div
       className={`${
         !isSideBarOpen && "hidden"
-      } bg-white h-[calc(100vh-64px)] w-64 md:flex flex-col fixed border-r`}
+      } bg-white z-50 h-[calc(100vh-64px)] w-64 md:flex flex-col fixed border-r`}
     >
       {/* menu list */}
       <div className="flex flex-col w-full">

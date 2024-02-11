@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={outfit.className}>
           <Toaster />
-          {children}
+          <div className="mb-10 md:mb-0">{children}</div>
         </body>
       </html>
     </ClerkProvider>
