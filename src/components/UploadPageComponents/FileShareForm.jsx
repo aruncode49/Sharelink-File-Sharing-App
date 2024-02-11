@@ -5,12 +5,18 @@ import React, { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebase";
+import axios from "axios";
+import { useUser } from "@clerk/nextjs";
 
 const FileShareForm = ({ file }) => {
   const [passwordEnable, setPasswordEnable] = useState(false);
   const [loading, setLoading] = useState(false);
   const password = useRef();
+  const email = useRef();
 
+  const { user } = useUser();
+
+  // update password in database
   async function savePasswordInDatabase() {
     try {
       if (password.current.value == "")
@@ -27,6 +33,33 @@ const FileShareForm = ({ file }) => {
     } finally {
       setLoading(false);
       password.current.value = "";
+    }
+  }
+
+  // send email
+  async function handleSendEmail(e) {
+    e.preventDefault();
+    if (email.current.value == "") return toast.error("Please add an email");
+    try {
+      setLoading(true);
+      const data = {
+        emailToSend: email?.current?.value,
+        fileName: file?.fileName,
+        fileSize: file?.fileSize,
+        fileType: file?.fileType,
+        userName: user?.fullName,
+        shortUrl: file?.shortUrl,
+      };
+      const res = await axios.post("/api/send", data);
+      console.log(res);
+      if (res?.data) {
+        toast.success("File send successfully");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -89,7 +122,10 @@ const FileShareForm = ({ file }) => {
       </div>
 
       {/* send file to email */}
-      <div className="flex flex-col gap-1 text-left  border border-gray-300 p-3 rounded-lg">
+      <form
+        onSubmit={handleSendEmail}
+        className="flex flex-col gap-1 text-left  border border-gray-300 p-3 rounded-lg"
+      >
         <label className="text-gray-500 font-medium text-lg" htmlFor="email">
           Send File to Email
         </label>
@@ -97,11 +133,12 @@ const FileShareForm = ({ file }) => {
           className=" border border-gray-300 p-3 w-full rounded-md text-lg"
           type="email"
           placeholder="example@gmail.com"
+          ref={email}
         />
         <button className="bg-primary hover:bg-blue-700 p-3 mt-2 text-lg rounded-md text-white">
-          Send Email
+          {loading ? <>Sending...</> : <>Send Email</>}
         </button>
-      </div>
+      </form>
     </div>
   );
 };
